@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1733415225589,
+      "tag": "0000_wide_joseph",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1733415742188,
+      "tag": "0001_simple_golden_guardian",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1733417755872,
+      "tag": "0002_amusing_gressill",
+      "breakpoints": true
+    }
+  ]
+}
