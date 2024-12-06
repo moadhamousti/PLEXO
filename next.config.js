@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Add your configuration options here
+  experimental: {
+    serverActions: true,
+  },
+  images: {
+    domains: ['fmliqecnrxgzwvucipeu.supabase.co'],
+  },
 };
 
 module.exports = nextConfig;
