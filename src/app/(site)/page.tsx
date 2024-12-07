@@ -39,7 +39,7 @@ const HomePage = () => {
           rounded-xl
           bg-gradient-to-r
           from-primary
-          to-brand-primaryBlue
+          to-brand-primaryPeach
           sm:w-[300px]
         "
         >
@@ -161,7 +161,7 @@ const HomePage = () => {
           rounded-full
           h-32
           absolute
-          bg-brand-primaryPurple/50
+          bg-brand-primaryPink/50
           -z-10
           top-22
         "
@@ -181,7 +181,7 @@ const HomePage = () => {
           sm:ml-0
           rounded-2xl
           border-8
-          border-washed-purple-300 
+          border-washed-pink-300 
           border-opacity-10
         "
         >
@@ -199,7 +199,7 @@ const HomePage = () => {
           rounded-full
           h-32
           absolute
-          bg-brand-primaryPurple/50
+          bg-brand-primaryPink/50
           -z-100
           top-56
         "
@@ -257,14 +257,14 @@ const HomePage = () => {
                         <CardTitle className="text-foreground">
                           {testimonial.name}
                         </CardTitle>
-                        <CardDescription className="dark:text-washed-purple-800">
+                        <CardDescription className="dark:text-washed-peach-600">
                           {testimonial.name.toLocaleLowerCase()}
                         </CardDescription>
                       </div>
                     </div>
                   }
                   cardContent={
-                    <p className="dark:text-washed-purple-800">
+                    <p className="dark:text-washed-peach-100">
                       {testimonial.message}
                     </p>
                   }
@@ -302,7 +302,7 @@ const HomePage = () => {
               className={clsx(
                 'w-[300px] rounded-2xl dark:bg-black/40 background-blur-3xl relative',
                 {
-                  'border-brand-primaryPurple/70':
+                  'border-brand-primaryPink/70':
                     card.planType === PRICING_PLANS.proplan,
                 }
               )}
@@ -317,7 +317,7 @@ const HomePage = () => {
                       <div
                         className="hidden dark:block w-full blur-[120px] rounded-full h-32
                         absolute
-                        bg-brand-primaryPurple/80
+                        bg-brand-primaryPink/80
                         -z-10
                         top-0
                       "
@@ -342,13 +342,13 @@ const HomePage = () => {
                     ${card.price}
                   </span>
                   {+card.price > 0 ? (
-                    <span className="dark:text-washed-purple-800 ml-1">
+                    <span className="dark:text-washed-pink-800 ml-1">
                       /mo
                     </span>
                   ) : (
                     ''
                   )}
-                  <p className="dark:text-washed-purple-800">
+                  <p className="dark:text-washed-pink-800">
                     {card.description}
                   </p>
                   <Button

@@ -124,5 +124,5 @@ body {
 .ql-editor > p,
 ol,
 ul {
-  @apply dark:text-washed-purple-700;
+  @apply dark:text-washed-pink-700;
 }
