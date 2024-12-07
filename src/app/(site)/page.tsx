@@ -348,7 +348,7 @@ const HomePage = () => {
                   ) : (
                     ''
                   )}
-                  <p className="dark:text-washed-pink-800">
+                  <p className="dark:text-washed-pink-200">
                     {card.description}
                   </p>
                   <Button
