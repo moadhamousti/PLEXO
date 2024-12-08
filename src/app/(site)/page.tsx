@@ -38,7 +38,7 @@ const HomePage = () => {
           mt-6
           rounded-xl
           bg-gradient-to-r
-          from-primary
+          from-brand-primaryPink
           to-brand-primaryPeach
           sm:w-[300px]
         "
@@ -257,14 +257,14 @@ const HomePage = () => {
                         <CardTitle className="text-foreground">
                           {testimonial.name}
                         </CardTitle>
-                        <CardDescription className="dark:text-washed-peach-600">
+                        <CardDescription className="dark:text-washed-pink-100">
                           {testimonial.name.toLocaleLowerCase()}
                         </CardDescription>
                       </div>
                     </div>
                   }
                   cardContent={
-                    <p className="dark:text-washed-peach-100">
+                    <p className="dark:text-Neutrals/neutrals-7">
                       {testimonial.message}
                     </p>
                   }
@@ -342,13 +342,13 @@ const HomePage = () => {
                     ${card.price}
                   </span>
                   {+card.price > 0 ? (
-                    <span className="dark:text-washed-pink-800 ml-1">
+                    <span className="dark:text-Neutrals/neutrals-8 ml-1">
                       /mo
                     </span>
                   ) : (
                     ''
                   )}
-                  <p className="dark:text-washed-pink-200">
+                  <p className="dark:text-Neutrals/neutrals-8">
                     {card.description}
                   </p>
                   <Button
@@ -370,13 +370,15 @@ const HomePage = () => {
                   gap-4
                 "
                 >
-                  <small>{card.highlightFeature}</small>
+                  <small className='dark:text-Neutrals/neutrals-1'>{card.highlightFeature}</small>
                   {card.freatures.map((feature) => (
                     <li
                       key={feature}
                       className="flex
                       items-center
                       gap-2
+                      dark:text-Neutrals/neutrals-6
+                      
                     "
                     >
                       <Image
