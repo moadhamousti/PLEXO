@@ -102,16 +102,10 @@ const Signup = () => {
         >
           <Image
             src={Logo}
-            alt="cypress Logo"
-            width={50}
-            height={50}
+            alt="Plexo Logo"
+            width={150}
+            height={150}
           />
-          <span
-            className="font-semibold
-          dark:text-white text-4xl first-letter:ml-2"
-          >
-            cypress.
-          </span>
         </Link>
         <FormDescription
           className="

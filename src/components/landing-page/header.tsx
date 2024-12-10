@@ -80,17 +80,10 @@ const Header = () => {
       >
         <Image
           src={Logo}
-          alt="Cypress Logo"
-          width={25}
-          height={25}
+          alt="Plexo Logo"
+          width={100}
+          height={100}
         />
-        <span
-          className="font-semibold
-          dark:text-white
-        "
-        >
-          cypress.
-        </span>
       </Link>
       <NavigationMenu className="hidden md:block">
         <NavigationMenuList className="gap-6">
