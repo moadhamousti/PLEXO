@@ -1,12 +1,17 @@
 export const dynamic = 'force-dynamic';
 
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/lib/providers/next-theme-provider';
 import { DM_Sans } from 'next/font/google';
-import { cn } from '@/lib/utils';
+import { twMerge } from 'tailwind-merge';
+import AppStateProvider from '@/lib/providers/state-provider';
+import { Toaster } from '@/components/ui/toaster';
+// import { SupabaseUserProvider } from '@/lib/providers/supabase-user-provider';
+// import { SocketProvider } from '@/lib/providers/socket-provider';
 
-const inter = DM_Sans({ subsets: ['latin'], display: 'swap' });
+const inter = DM_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,14 +23,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const isServer = typeof window === 'undefined';
-
   return (
-    <html lang="en" className={isServer ? 'dark' : ''} suppressHydrationWarning>
-
-      <body className={cn('bg-background', inter.className)}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
+    <html lang="en">
+      <body className={twMerge('bg-background', inter.className)}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+        >
+          <AppStateProvider>
+            {/* <SupabaseUserProvider>
+              <SocketProvider> */}
+                {children}
+                <Toaster />
+              {/* </SocketProvider>
+            </SupabaseUserProvider> */}
+          </AppStateProvider>
         </ThemeProvider>
       </body>
     </html>
