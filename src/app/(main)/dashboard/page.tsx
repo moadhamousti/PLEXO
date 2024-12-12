@@ -36,10 +36,10 @@ const DashboardPage = async () => {
         items-center
   "
       >
-        <DashboardSetup
+        {/* <DashboardSetup
           user={user}
           // subscription={subscription}
-        />
+        /> */}
       </div>
     );
 
