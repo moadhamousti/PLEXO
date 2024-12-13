@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 import db from '@/lib/supabase/db';
 import { redirect } from 'next/navigation';
 import DashboardSetup from '@/components/dashboard-setup/dashboard-setup';
-// import { getUserSubscriptionStatus } from '@/lib/supabase/queries';
+import { getUserSubscriptionStatus } from '@/lib/supabase/queries';
 
 const DashboardPage = async () => {
   const supabase = createServerComponentClient({ cookies });
@@ -20,10 +20,10 @@ const DashboardPage = async () => {
     where: (workspace, { eq }) => eq(workspace.workspaceOwner, user.id),
   });
 
-  // const { data: subscription, error: subscriptionError } =
-  //   await getUserSubscriptionStatus(user.id);
+  const { data: subscription, error: subscriptionError } =
+    await getUserSubscriptionStatus(user.id);
 
-  // if (subscriptionError) return;
+  if (subscriptionError) return;
 
   if (!workspace)
     return (
@@ -36,10 +36,10 @@ const DashboardPage = async () => {
         items-center
   "
       >
-        {/* <DashboardSetup
+        <DashboardSetup
           user={user}
-          // subscription={subscription}
-        /> */}
+          subscription={subscription}
+        />
       </div>
     );
 
