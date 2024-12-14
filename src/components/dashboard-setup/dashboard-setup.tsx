@@ -27,11 +27,11 @@ import { z } from 'zod';
 
 interface DashboardSetupProps {
   user: AuthUser;
-  subscription: Subscription | null;
+  // subscription: Subscription | null;
 }
 
 const DashboardSetup: React.FC<DashboardSetupProps> = ({
-  subscription,
+  // subscription,
   user,
 }) => {
   const { toast } = useToast();
@@ -183,6 +183,7 @@ const DashboardSetup: React.FC<DashboardSetupProps> = ({
                 accept="image/*"
                 placeholder="Workspace Name"
                 // disabled={isLoading || subscription?.status !== 'active'}
+                disabled={isLoading}
                 {...register('logo', {
                   required: false,
                 })}
@@ -190,7 +191,7 @@ const DashboardSetup: React.FC<DashboardSetupProps> = ({
               <small className="text-red-600">
                 {errors?.logo?.message?.toString()}
               </small>
-              {subscription?.status !== 'active' && (
+              {/* {subscription?.status !== 'active' && (
                 <small
                   className="
                   text-muted-foreground
@@ -199,7 +200,7 @@ const DashboardSetup: React.FC<DashboardSetupProps> = ({
                 >
                   To customize your workspace, you need to be on a Pro Plan
                 </small>
-              )}
+              )} */}
             </div>
             <div className="self-end">
               <Button

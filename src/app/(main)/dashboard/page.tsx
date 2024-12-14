@@ -20,10 +20,10 @@ const DashboardPage = async () => {
     where: (workspace, { eq }) => eq(workspace.workspaceOwner, user.id),
   });
 
-  const { data: subscription, error: subscriptionError } =
-    await getUserSubscriptionStatus(user.id);
+  // const { data: subscription, error: subscriptionError } =
+  //   await getUserSubscriptionStatus(user.id);
 
-  if (subscriptionError) return;
+  // if (subscriptionError) return;
 
   if (!workspace)
     return (
@@ -38,7 +38,7 @@ const DashboardPage = async () => {
       >
         <DashboardSetup
           user={user}
-          subscription={subscription}
+          // subscription={subscription}
         />
       </div>
     );
