@@ -52,7 +52,7 @@ const HomePage = () => {
             bg-background
           "
           >
-            Get Cypress Free
+            Get Plexo Free
           </Button>
         </div>
         <div

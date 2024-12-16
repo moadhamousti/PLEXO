@@ -8,8 +8,8 @@ import { DM_Sans } from 'next/font/google';
 import { twMerge } from 'tailwind-merge';
 import AppStateProvider from '@/lib/providers/state-provider';
 import { Toaster } from '@/components/ui/toaster';
-// import { SupabaseUserProvider } from '@/lib/providers/supabase-user-provider';
-// import { SocketProvider } from '@/lib/providers/socket-provider';
+import { SupabaseUserProvider } from '@/lib/providers/supabase-user-provider';
+import { SocketProvider } from '@/lib/providers/socket-provider';
 
 const inter = DM_Sans({ subsets: ['latin'] });
 
@@ -32,12 +32,12 @@ export default function RootLayout({
           enableSystem
         >
           <AppStateProvider>
-            {/* <SupabaseUserProvider>
-              <SocketProvider> */}
+            <SupabaseUserProvider>
+              <SocketProvider>
                 {children}
                 <Toaster />
-              {/* </SocketProvider>
-            </SupabaseUserProvider> */}
+              </SocketProvider>
+            </SupabaseUserProvider>
           </AppStateProvider>
         </ThemeProvider>
       </body>
