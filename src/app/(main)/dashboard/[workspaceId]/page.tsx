@@ -20,3 +20,5 @@ const Workspace = async ({ params }: { params: { workspaceId: string } }) => {
 };
 
 export default Workspace;
+
+

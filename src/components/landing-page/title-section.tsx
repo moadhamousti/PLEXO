@@ -27,8 +27,8 @@ const TitleSection: React.FC<TitleSectionProps> = ({
           p-[1px]
           text-sm
           dark:bg-gradient-to-r
-          dark:from-brand-primaryPeach
-          dark:to-brand-primaryPink
+          dark:from-brand-primaryBlue
+          dark:to-brand-primaryPurple
         "
         >
           <div
@@ -54,7 +54,7 @@ const TitleSection: React.FC<TitleSectionProps> = ({
               {title}
             </h2>
             <p
-              className="dark:text-washed-rose-700 sm:max-w-[450px]
+              className="dark:text-washed-purple-700 sm:max-w-[450px]
               md:text-center
             "
             >

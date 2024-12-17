@@ -183,7 +183,6 @@ const DashboardSetup: React.FC<DashboardSetupProps> = ({
                 accept="image/*"
                 placeholder="Workspace Name"
                 // disabled={isLoading || subscription?.status !== 'active'}
-                disabled={isLoading}
                 {...register('logo', {
                   required: false,
                 })}
