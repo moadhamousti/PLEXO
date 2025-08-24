@@ -31,30 +31,32 @@ const FoldersDropdownList: React.FC<FoldersDropdownListProps> = ({
 
   //effec set nitial satte server app state
   useEffect(() => {
-    if (workspaceFolders.length > 0) {
-      dispatch({
-        type: 'SET_FOLDERS',
-        payload: {
-          workspaceId,
-          folders: workspaceFolders.map((folder) => ({
-            ...folder,
-            files:
-              state.workspaces
-                .find((workspace) => workspace.id === workspaceId)
-                ?.folders.find((f) => f.id === folder.id)?.files || [],
-          })),
-        },
-      });
-    }
-  }, [workspaceFolders, workspaceId]);
+  if (workspaceFolders.length > 0) {
+    dispatch({
+      type: 'SET_FOLDERS',
+      payload: {
+        workspaceId,
+        folders: workspaceFolders.map((folder) => ({
+          ...folder,
+          files:
+            state.workspaces
+              .find((workspace) => workspace.id === workspaceId)
+              ?.folders.find((f) => f.id === folder.id)?.files || [],
+        })),
+      },
+    });
+  }
+}, [workspaceFolders, workspaceId, dispatch, state.workspaces]);
+
   //state
 
-  useEffect(() => {
-    setFolders(
-      state.workspaces.find((workspace) => workspace.id === workspaceId)
-        ?.folders || []
-    );
-  }, [state]);
+useEffect(() => {
+  setFolders(
+    state.workspaces.find((workspace) => workspace.id === workspaceId)
+      ?.folders || []
+  );
+}, [state, workspaceId]);
+
 
   //add folder
   const addFolderHandler = async () => {

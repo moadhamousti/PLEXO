@@ -84,37 +84,41 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
   const [localCursors, setLocalCursors] = useState<any>([]);
 
   const details = useMemo(() => {
-    let selectedDir;
-    if (dirType === 'file') {
-      selectedDir = state.workspaces
-        .find((workspace) => workspace.id === workspaceId)
-        ?.folders.find((folder) => folder.id === folderId)
-        ?.files.find((file) => file.id === fileId);
-    }
-    if (dirType === 'folder') {
-      selectedDir = state.workspaces
-        .find((workspace) => workspace.id === workspaceId)
-        ?.folders.find((folder) => folder.id === fileId);
-    }
-    if (dirType === 'workspace') {
-      selectedDir = state.workspaces.find(
-        (workspace) => workspace.id === fileId
-      );
-    }
+  let selectedDir;
+  if (dirType === 'file') {
+    selectedDir = state.workspaces
+      .find((workspace) => workspace.id === workspaceId)
+      ?.folders.find((folder) => folder.id === folderId)
+      ?.files.find((file) => file.id === fileId);
+  }
+  if (dirType === 'folder') {
+    selectedDir = state.workspaces
+      .find((workspace) => workspace.id === workspaceId)
+      ?.folders.find((folder) => folder.id === fileId);
+  }
+  if (dirType === 'workspace') {
+    selectedDir = state.workspaces.find((workspace) => workspace.id === fileId);
+  }
 
-    if (selectedDir) {
-      return selectedDir;
-    }
+  if (selectedDir) return selectedDir;
 
-    return {
-      title: dirDetails.title,
-      iconId: dirDetails.iconId,
-      createdAt: dirDetails.createdAt,
-      data: dirDetails.data,
-      inTrash: dirDetails.inTrash,
-      bannerUrl: dirDetails.bannerUrl,
-    } as workspace | Folder | File;
-  }, [state, workspaceId, folderId]);
+  return {
+    title: dirDetails.title,
+    iconId: dirDetails.iconId,
+    createdAt: dirDetails.createdAt,
+    data: dirDetails.data,
+    inTrash: dirDetails.inTrash,
+    bannerUrl: dirDetails.bannerUrl,
+  } as workspace | Folder | File;
+}, [
+  state,
+  workspaceId,
+  folderId,
+  dirDetails,
+  dirType,
+  fileId,
+]);
+
 
   const breadCrumbs = useMemo(() => {
     if (!pathname || !state.workspaces || !workspaceId) return;
@@ -284,10 +288,10 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
     setDeletingBanner(false);
   };
 
-  useEffect(() => {
-    if (!fileId) return;
-    let selectedDir;
-    const fetchInformation = async () => {
+useEffect(() => {
+  if (!fileId) return;
+  let selectedDir;
+  const fetchInformation = async () => {
       if (dirType === 'file') {
         const { data: selectedDir, error } = await getFileDetails(fileId);
         if (error || !selectedDir) {
@@ -350,7 +354,7 @@ const QuillEditor: React.FC<QuillEditorProps> = ({
       }
     };
     fetchInformation();
-  }, [fileId, workspaceId, quill, dirType]);
+  }, [fileId, workspaceId, quill, dirType, dispatch, router]);
 
   useEffect(() => {
     if (quill === null || socket === null || !fileId || !localCursors.length)

@@ -11,8 +11,8 @@ import {
 import {
   prices,
   products,
-  subscriptionStatus,
-  users,
+  subscriptions,  
+  // subscriptionStatus,
 } from '../../../migrations/schema';
 
 export const workspaces = pgTable('workspaces', {
@@ -77,51 +77,6 @@ export const files = pgTable('files', {
     }),
 });
 
-export const subscriptions = pgTable('subscriptions', {
-  id: text('id').primaryKey().notNull(),
-  userId: uuid('user_id').notNull(),
-  status: subscriptionStatus('status'),
-  metadata: jsonb('metadata'),
-  priceId: text('price_id').references(() => prices.id),
-  quantity: integer('quantity'),
-  cancelAtPeriodEnd: boolean('cancel_at_period_end'),
-  created: timestamp('created', { withTimezone: true, mode: 'string' })
-    .default(sql`now()`)
-    .notNull(),
-  currentPeriodStart: timestamp('current_period_start', {
-    withTimezone: true,
-    mode: 'string',
-  })
-    .default(sql`now()`)
-    .notNull(),
-  currentPeriodEnd: timestamp('current_period_end', {
-    withTimezone: true,
-    mode: 'string',
-  })
-    .default(sql`now()`)
-    .notNull(),
-  endedAt: timestamp('ended_at', {
-    withTimezone: true,
-    mode: 'string',
-  }).default(sql`now()`),
-  cancelAt: timestamp('cancel_at', {
-    withTimezone: true,
-    mode: 'string',
-  }).default(sql`now()`),
-  canceledAt: timestamp('canceled_at', {
-    withTimezone: true,
-    mode: 'string',
-  }).default(sql`now()`),
-  trialStart: timestamp('trial_start', {
-    withTimezone: true,
-    mode: 'string',
-  }).default(sql`now()`),
-  trialEnd: timestamp('trial_end', {
-    withTimezone: true,
-    mode: 'string',
-  }).default(sql`now()`),
-});
-
 export const collaborators = pgTable('collaborators', {
   id: uuid('id').defaultRandom().primaryKey().notNull(),
   workspaceId: uuid('workspace_id')
@@ -149,3 +104,28 @@ export const pricesRelations = relations(prices, ({ one }) => ({
     references: [products.id],
   }),
 }));
+
+export const users = pgTable('users', {
+  id: uuid('id').primaryKey().notNull(),
+  fullName: text('full_name'),
+  avatarUrl: text('avatar_url'),
+  billingAddress: jsonb('billing_address'),
+  updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'string' }),
+  paymentMethod: jsonb('payment_method'),
+  email: text('email'),
+});
+
+
+// ------------------- SUBSCRIPTIONS -------------------
+export const subscriptionsRelations = relations(subscriptions, ({ one }) => ({
+  user: one(users, {
+    fields: [subscriptions.userId],
+    references: [users.id],
+  }),
+  price: one(prices, {
+    fields: [subscriptions.priceId],
+    references: [prices.id],
+  }),
+}));
+
+export { subscriptions };

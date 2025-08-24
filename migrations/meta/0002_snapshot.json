@@ -1,9 +1,72 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "f9769aa0-bae7-49bc-bcf8-c3d110c42803",
-  "prevId": "f04e6f5d-e4b1-4a54-9bde-10a60145b71a",
+  "id": "7b69deea-d0de-4931-adae-c10b96e21551",
+  "prevId": "8d937a8a-6f8c-413e-87fd-9f5367c7584b",
   "tables": {
+    "collaborators": {
+      "name": "collaborators",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "workspace_id": {
+          "name": "workspace_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "collaborators_workspace_id_workspaces_id_fk": {
+          "name": "collaborators_workspace_id_workspaces_id_fk",
+          "tableFrom": "collaborators",
+          "tableTo": "workspaces",
+          "columnsFrom": [
+            "workspace_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "collaborators_user_id_users_id_fk": {
+          "name": "collaborators_user_id_users_id_fk",
+          "tableFrom": "collaborators",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "files": {
       "name": "files",
       "schema": "",
